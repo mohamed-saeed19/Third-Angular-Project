@@ -1,0 +1,6 @@
+<app-todo-form (addTask)="addTask($event)"></app-todo-form>
+<app-todo-list
+  [tasks]="tasks"
+  (deleteTask)="deleteTask($event)"
+  (toggleCompleted)="toggleCompleted($event)"
+></app-todo-list>

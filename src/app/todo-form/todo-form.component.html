@@ -1,0 +1,16 @@
+<div class="bg-primary main">
+  <div class="me-5 pt-3">
+    <h1 class="display-1 text-end me-5 text-light">To-Do App!</h1>
+    <p class="display-6 text-end me-5 text-light">Add New To-Do</p>
+    <input
+      class="form-control mx-auto search"
+      type="text"
+      placeholder="Enter New Task"
+      [(ngModel)]="newTask"
+      (keyup.enter)="onAddTask()"
+    />
+    <div class="d-flex justify-content-end">
+      <button class="btn add btn-primary btn-lg my-5" (click)="onAddTask()">Add</button>
+    </div>
+  </div>
+</div>

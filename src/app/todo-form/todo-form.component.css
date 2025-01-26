@@ -1,0 +1,12 @@
+.main{
+  height: fit-content;
+}
+.add{
+  border: 1px solid white;
+}
+.search{
+  width: 90%;
+}
+.search::placeholder {
+  color: rgb(13, 110, 253);
+}

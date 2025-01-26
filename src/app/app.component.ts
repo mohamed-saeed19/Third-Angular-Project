@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { TodoParentComponent } from "./todo-parent/todo-parent.component";
+import { CardListComponent } from "./card-list/card-list.component";
 
 @Component({
   selector: 'app-root',
-  imports: [ TodoParentComponent],
+  imports: [TodoParentComponent, CardListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

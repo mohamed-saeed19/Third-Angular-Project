@@ -1,0 +1,25 @@
+  <div class="card mb-3 position-relative h-100 ">
+    <span class="badge position-absolute m-2" [ngClass]="getStockBadgeClass()">
+      {{ getStockStatus() }}
+    </span>
+  <img [src]="cardItem.thumbnail" class="card-img-top" alt="{{ cardItem.title }}" />
+  <div class="card-body">
+      <h5 class="card-title ">{{ cardItem.title }}</h5>
+    <p class="card-text">
+      <strong>Price: </strong> {{ cardItem.price | currency: 'EGP' }}
+    </p>
+    <div class="text-warning">
+      @for (star of [1, 2, 3, 4, 5]; track $index) {
+        <i
+        class="fa-solid "
+        [ngClass]="{
+          'fa-star': star <= roundRating(cardItem.rating),
+        }"
+      ></i>
+      }
+    </div>
+    <button class="btn btn-outline-success rounded-5 mt-2" [disabled]="cardItem.stock === 0">
+      Add to Cart
+    </button>
+  </div>
+</div>

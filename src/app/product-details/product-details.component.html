@@ -1,0 +1,92 @@
+<div class="container mt-5">
+  @if (!product) {
+    <div class="text-center">
+      <p>Loading product details...</p>
+    </div>
+  } @else {
+    <div class="row">
+      <div class="col-md-1">
+        @for (image of product.images; track image) {
+          <div class="mb-3">
+            <img [src]="image" class="img-thumbnail" (click)="changeMainImage(image)" alt="Thumbnail Image">
+          </div>
+        }
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <img [src]="mainImage" class="card-img-top my-size" alt="Main Product Image" id="mainImage">
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <h2>{{ product.title }}</h2>
+        <p class="text-muted">{{ product.description }}</p>
+        <hr>
+
+        <div class="d-flex justify-content-between align-items-center">
+          @if (product.price | discountPrice : product.discountPercentage; as prices) {
+            <div>
+              <h4 class="text-success">${{ prices.discountedPrice | number: '1.2-2' }}</h4>
+              @if (prices.discountedPrice !== prices.originalPrice) {
+                <small class="text-muted text-decoration-line-through">${{ prices.originalPrice | number: '1.2-2' }}</small>
+              }
+            </div>
+          }
+          <span class="badge bg-danger">{{ product.discountPercentage }}% OFF</span>
+        </div>
+
+        <div class="mt-3">
+          <span class="fw-bold">Rating:</span>
+          <span class="text-warning">{{ product.rating }}</span>
+          <i class="fas fa-star text-warning"></i>
+        </div>
+        <div class="d-flex align-items-center mt-2">
+          <button class="btn btn-outline-secondary" (click)="decrementQuantity()" [disabled]="quantity === 0 || product.stock === 0">
+            <i class="fas fa-minus"></i>
+          </button>
+
+          <!-- Quantity Label -->
+          <span class="mx-3 fw-bold">{{ quantity }}</span>
+
+          <!-- Increment Button -->
+          <button class="btn btn-outline-secondary" (click)="incrementQuantity()" [disabled]="quantity === product.stock || product.stock === 0">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+
+        <!-- Stock Information -->
+        <div class="mt-2">
+          @if (product.stock === 0) {
+            <small class="text-danger">Out of Stock</small>
+          } @else {
+            <small class="text-muted">Available Stock: {{ product.stock }}</small>
+          }
+        </div>
+
+        <div class="mt-3">
+          <span class="fw-bold">Availability:</span>
+          <span [ngClass]="{
+            'text-danger': product.availabilityStatus === 'Low Stock',
+            'text-success': product.availabilityStatus === 'In Stock'
+          }">
+            {{ product.availabilityStatus }}
+          </span>
+        </div>
+
+        <div class="mt-3">
+          <span class="fw-bold">Brand:</span> {{ product.brand }}
+        </div>
+        <div class="mt-3">
+          <span class="fw-bold">Category:</span> {{ product.category }}
+        </div>
+
+        <div class="mt-3">
+          <span class="fw-bold">Warranty:</span> {{ product.warrantyInformation }}
+        </div>
+        <div class="mt-3">
+          <span class="fw-bold">Shipping:</span> {{ product.shippingInformation }}
+        </div>
+      </div>
+    </div>
+  }
+</div>

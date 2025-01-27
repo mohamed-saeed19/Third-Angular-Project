@@ -1,25 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid d-flex justify-content-between align-items-center">
-    <a class="navbar-brand text-success ms-3" href="#">Products App</a>
-    <div class="second me-3">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link text-dark" >Login</a>
-        <a class="nav-link text-dark" >Resister</a>
-      </div>
-    </div>
-    </div>
-  </div>
-</nav>
-<div class="container mt-5">
-  <div class="row">
+  <div class="row mt-5">
     @for (product of products; track product.id) {
-      <div class="col-md-3 my-2">
+      <div class="col-lg-4 col-md-6 my-2">
         <app-card-item [cardItem]="product"></app-card-item>
       </div>
     }
   </div>
-</div>

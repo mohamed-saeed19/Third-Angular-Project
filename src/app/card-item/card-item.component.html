@@ -9,17 +9,22 @@
       <strong>Price: </strong> {{ cardItem.price | currency: 'EGP' }}
     </p>
     <div class="text-warning">
-      @for (star of [1, 2, 3, 4, 5]; track $index) {
-        <i
-        class="fa-solid "
-        [ngClass]="{
-          'fa-star': star <= roundRating(cardItem.rating),
-        }"
-      ></i>
+      @for (star of [1, 2, 3, 4, 5]; track star) {
+        <span
+          [ngClass]="{
+            'filled': star <= roundRating(cardItem.rating),
+            'empty': star > roundRating(cardItem.rating)
+          }"
+        >
+          {{ star <= roundRating(cardItem.rating) ? '★' : '☆' }}
+        </span>
       }
     </div>
-    <button class="btn btn-outline-success rounded-5 mt-2" [disabled]="cardItem.stock === 0">
+    <button class="btn btn-outline-success rounded-5 my-2 w-100" [disabled]="cardItem.stock === 0">
       Add to Cart
+    </button><br/>
+    <button (click)="handleRedirectToDetails(cardItem.id)" class="btn btn-outline-danger rounded-5 w-100">
+      View More Details
     </button>
   </div>
 </div>

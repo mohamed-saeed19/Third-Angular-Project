@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
-import { Product } from '../types/product';
-import { CardItemComponent } from '../card-item/card-item.component';
+import { Product } from './../types/product';
+import { Component, Input } from '@angular/core';
+import {  DatePipe, NgClass ,DecimalPipe} from '@angular/common';
+import { DiscountPricePipe } from '../discount-price.pipe';
 
 @Component({
-  selector: 'app-card-list',
-  imports: [CardItemComponent],
-  templateUrl: './card-list.component.html',
-  styleUrl: './card-list.component.css',
+  selector: 'app-product-details',
+  imports: [NgClass,DatePipe,DiscountPricePipe ,DecimalPipe],
+  templateUrl: './product-details.component.html',
+  styleUrl: './product-details.component.css'
 })
-export class CardListComponent {
+export class ProductDetailsComponent  {
+  @Input() id: string = '';
+  product: Product | undefined;
+  mainImage: string = '';
+  quantity: number = 1;
   products: Array<Product> =[
     {
       "id": 1,
@@ -1610,5 +1615,23 @@ export class CardListComponent {
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Kiwi/thumbnail.png"
     }
   ]
-
+  ngOnInit() {
+    this.product = this.products.find((item: Product) => item.id === Number(this.id));
+    if (this.product && this.product.images.length > 0) {
+      this.mainImage = this.product.images[0];
+    }
+  }
+  changeMainImage(image: string) {
+    this.mainImage = image;
+  }
+  incrementQuantity() {
+    if (this.quantity < this.product!.stock) {
+      this.quantity++;
+    }
+  }
+  decrementQuantity() {
+    if (this.quantity > 0) {
+      this.quantity--;
+    }
+  }
 }

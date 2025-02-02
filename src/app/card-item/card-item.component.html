@@ -20,7 +20,7 @@
         </span>
       }
     </div>
-    <button class="btn btn-outline-success rounded-5 my-2 w-100" [disabled]="cardItem.stock === 0">
+    <button class="btn btn-outline-success rounded-5 my-2 w-100" [disabled]="cardItem.stock === 0" (click)="addToCart(cardItem)">
       Add to Cart
     </button><br/>
     <button (click)="handleRedirectToDetails(cardItem.id)" class="btn btn-outline-danger rounded-5 w-100">

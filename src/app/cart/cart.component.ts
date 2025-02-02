@@ -29,12 +29,8 @@ export class CartComponent {
 
   updateQuantity(product: Product, quantity: number): void {
     if (quantity < 1 || quantity > product.stock) return;
-    if (quantity === 0) {
-      this.removeFromCart(product);
-    } else {
-      this.CartServiceService.updateQuantity(product, quantity);
-      this.fetchCartItems();
-    }
+    this.CartServiceService.updateQuantity(product, quantity);
+    this.fetchCartItems();
   }
 
   clearCart(): void {
